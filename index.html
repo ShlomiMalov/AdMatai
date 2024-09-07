@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>גדוד 405 נמר</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap');
+        
+        :root {
+            --primary-color: #1a2639;
+            --secondary-color: #3e4a61;
+            --accent-color: #c24d2c;
+            --text-color: #d9dad7;
+        }
+        
+        body {
+            font-family: 'Heebo', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            background-image: url('טנקים.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: rgba(26, 38, 57, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+        }
+        .header img {
+            width: 120px;
+            height: auto;
+            margin-left: 20px;
+            filter: drop-shadow(0 0 10px rgba(194, 77, 44, 0.5));
+        }
+        h1 {
+            color: var(--text-color);
+            font-size: 4rem;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+            font-weight: 900;
+            margin: 0;
+        }
+        .nav {
+            background-color: var(--secondary-color);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            margin-bottom: 50px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .nav-button {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(194, 77, 44, 0.4);
+        }
+        .circle-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+        .circle {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 3px solid var(--accent-color);
+            background-color: var(--secondary-color);
+        }
+        .circle:hover {
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 20px 40px rgba(194, 77, 44, 0.3);
+        }
+        .circle img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
+            transition: all 0.3s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            filter: drop-shadow(0 0 5px rgba(194, 77, 44, 0.5));
+        }
+        .circle:hover img {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .circle p {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(194, 77, 44, 0.9);
+            color: var(--text-color);
+            margin: 0;
+            padding: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .circle:hover p {
+            background-color: var(--accent-color);
+            padding-bottom: 20px;
+        }
+        .circle:nth-child(1) img {
+            width: 90%;
+            height: 90%;
+            top: 45%;
+        }
+        .circle:nth-child(2) img {
+            top: 45%;
+        }
+        .circle:nth-child(3) img {
+            top: 45%;
+            transform: translate(-50%, -50%) rotate(10deg);
+        }
+        .circle:nth-child(3):hover img {
+            transform: translate(-50%, -50%) rotate(10deg) scale(1.1);
+        }
+
+        .particle {
+            position: fixed;
+            background-repeat: no-repeat;
+            background-size: contain;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .star {
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD700"><path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.828 1.48 8.279-7.416-3.967-7.417 3.967 1.481-8.279-6.064-5.828 8.332-1.151z"/></svg>');
+        }
+
+        .kaki {
+            width: 40px;
+            height: 40px;
+            background-image: url('קקי-removebg-preview.png');
+        }
+
+        .kaki-2 {
+            width: 40px;
+            height: 40px;
+            background-image: url('קקי_2-removebg-preview.png');
+        }
+
+        .kaki-3 {
+            width: 40px;
+            height: 40px;
+            background-image: url('קקי_3-removebg-preview.png');
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="נמר_מקור-removebg-preview.png" alt="סמל נמר">
+            <h1>גדוד 405 נמר</h1>
+        </div>
+        
+        <nav class="nav">
+            <button class="nav-button">המפקדים</button>
+            <button class="nav-button">מורשת קרב</button>
+            <button class="nav-button">שירי סוללה</button>
+        </nav>
+        
+        <div class="circle-container">
+            <div class="circle">
+                <img src="אלון-removebg-preview.png" alt="אלון">
+                <p>אלון</p>
+            </div>
+            <div class="circle">
+                <img src="קקי-removebg-preview.png" alt="בזלת">
+                <p>בזלת</p>
+            </div>
+            <div class="circle">
+                <img src="גרניט-removebg-preview.png" alt="גרניט">
+                <p>גרניט</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createParticles(type, count) {
+            const types = ['kaki', 'kaki-2', 'kaki-3'];
+            for (let i = 0; i < count; i++) {
+                let particle = document.createElement('div');
+                particle.className = `particle ${type === 'kaki' ? types[Math.floor(Math.random() * types.length)] : type}`;
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = '-50px';
+                particle.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(particle);
+
+                let animation = particle.animate([
+                    { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${Math.random() * 200 - 100}px, ${window.innerHeight + 50}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 2000 + 2000,
+                    easing: 'cubic-bezier(0.5, 0, 1, 1)',
+                    delay: Math.random() * 500
+                });
+
+                animation.onfinish = () => particle.remove();
+            }
+        }
+
+        document.querySelector('.circle:nth-child(1)').addEventListener('click', () => createParticles('star', 50));
+        document.querySelector('.circle:nth-child(2)').addEventListener('click', () => createParticles('kaki', 30));
+    </script>
+</body>
+</html>
